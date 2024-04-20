@@ -4,6 +4,7 @@ import Boton from './componentes/Boton';
 import Pantalla from './componentes/Pantalla';
 import BotonClear from './componentes/BotonClear';
 import { useState } from 'react';
+import { evaluate } from 'mathjs';
 
 function App() {
 
@@ -11,6 +12,14 @@ function App() {
 
   const agregarInput = val => {
     setInput(input + val);
+  };
+
+  const calcularResultado = () => {
+    if(input){git
+      setInput(evaluate(input));
+    } else {
+      alert("Por favor ingresar valores antes")
+    }
   };
 
   return (
@@ -42,13 +51,15 @@ function App() {
           <Boton manejarClick={agregarInput}>*</Boton>
         </div>
         <div className='fila'>
-          <Boton manejarClick={agregarInput}>=</Boton>
+          <Boton manejarClick={calcularResultado}>=</Boton>
           <Boton manejarClick={agregarInput}>0</Boton>
           <Boton manejarClick={agregarInput}>.</Boton>
           <Boton manejarClick={agregarInput}>/</Boton>
         </div>
         <div className='fila'>
-          <BotonClear>clear</BotonClear>
+          <BotonClear manejarClear={() => setInput('')}>
+            CLEAR
+          </BotonClear>
         </div>
       </div>
     </div>
